@@ -32,5 +32,4 @@ out/
 .vscode/
 
 bin/
-gradle/
 build/
