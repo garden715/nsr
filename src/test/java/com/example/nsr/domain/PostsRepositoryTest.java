@@ -1,5 +1,6 @@
 package com.example.nsr.domain;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,11 @@ import com.example.nsr.domain.posts.PostsRepository;
 public class PostsRepositoryTest {
     @Autowired
     PostsRepository postsRepository;
+
+    @AfterEach
+    public void cleanup() {
+        postsRepository.deleteAll();
+    }
 
     @Test
     public void 게시글저장_불러오기() {

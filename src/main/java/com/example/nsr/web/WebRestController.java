@@ -1,7 +1,7 @@
 package com.example.nsr.web;
 
-import com.example.nsr.domain.posts.PostsRepository;
 import com.example.nsr.dto.posts.PostsSaveRequestDto;
+import com.example.nsr.service.PostsService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class WebRestController {
 
-    private PostsRepository postsRepository;
+    private PostsService postService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -23,6 +23,6 @@ public class WebRestController {
 
     @PostMapping("/posts")
     public void savePosts(@RequestBody PostsSaveRequestDto dto) {
-        postsRepository.save(dto.toEntity());
+        postService.save(dto);
     }
 }
