@@ -1,46 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <span class="title mr-5">Network Supply Resource</span>
+      </div>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-main>
+      <Nsr />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Nsr from "./components/Nsr";
 
 export default {
-  name: 'App',
+  name: "App",
+
   components: {
-    HelloWorld
+    Nsr,
   },
-  mounted() {
-    const axios = require('axios');
 
-    // Make a request for a user with a given ID
-    axios.get('/api/hello')
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-
-  }
-}
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

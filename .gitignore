@@ -33,3 +33,4 @@ out/
 
 bin/
 build/
+src/main/resources/static

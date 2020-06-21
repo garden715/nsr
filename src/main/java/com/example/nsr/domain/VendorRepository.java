@@ -1,4 +1,4 @@
-package com.example.nsr.domain.posts;
+package com.example.nsr.domain;
 
 import java.util.stream.Stream;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostsRepository extends JpaRepository<Posts, Long> {
-    @Query("SELECT p " + "FROM Posts p " + "ORDER BY p.id DESC")
-    Stream<Posts> findAllDesc();
+public interface VendorRepository extends JpaRepository<Vendor, Long> {
+    @Query("SELECT p " + "FROM Vendor p " + "ORDER BY p.id DESC")
+    Stream<Vendor> findAllDesc();
 }

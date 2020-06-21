@@ -4,21 +4,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import com.example.nsr.domain.posts.Posts;
+import com.example.nsr.domain.Vendor;
 
 import lombok.Getter;
 
 @Getter
-public class PostsMainResponseDto {
+public class VendorResponseDto {
     private Long id;
-    private String title;
-    private String author;
+    private String name;
+    private String createdDate;
     private String modifiedDate;
 
-    public PostsMainResponseDto(Posts entity) {
+    public VendorResponseDto(Vendor entity) {
         id = entity.getId();
-        title = entity.getTitle();
-        author = entity.getAuthor();
+        name = entity.getName();
+        createdDate = toStringDateTime(entity.getCreatedDate());
         modifiedDate = toStringDateTime(entity.getModifiedDate());
     }
 
