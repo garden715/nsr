@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import com.example.nsr.domain.Kind;
-import com.example.nsr.domain.Location;
 import com.example.nsr.domain.Model;
-import com.example.nsr.domain.Vendor;
 
 import lombok.Getter;
 
