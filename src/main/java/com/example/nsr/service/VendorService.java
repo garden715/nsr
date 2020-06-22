@@ -3,6 +3,7 @@ package com.example.nsr.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.nsr.domain.Vendor;
 import com.example.nsr.domain.VendorRepository;
 import com.example.nsr.dto.VendorResponseDto;
 
@@ -21,4 +22,13 @@ public class VendorService {
         return vendorRepository.findAllDesc().map(VendorResponseDto::new).collect(Collectors.toList());
     }
 
+    @Transactional
+    public void deleteVendor(Long id) {
+        vendorRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Vendor save(Vendor newVendor) {
+        return vendorRepository.save(newVendor);
+    }
 }
