@@ -1,9 +1,10 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
-        <control-model/>
-      </v-col>
+      <v-spacer></v-spacer>
+        <control-model />
+        <control-vendor />
+        <control-location />
     </v-row>
     <v-row>
       <v-col>
@@ -22,12 +23,16 @@
 
 <script>
 import axios from "axios";
-import ControlModel from "./ControlModel"
+import ControlVendor from "./ControlVendor";
+import ControlLocation from "./ControlLocation";
+import ControlModel from "./ControlModel";
 
 export default {
   name: "Nsr",
   components: {
-    ControlModel
+    ControlVendor,
+    ControlLocation,
+    ControlModel,
   },
 
   data: () => ({
@@ -48,7 +53,6 @@ export default {
   mounted: function() {
     const baseURI = "/api/model";
     axios.get(`${baseURI}`).then((result) => {
-      console.log(result.data)
       this.models = result.data;
     });
   },

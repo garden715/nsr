@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Model extends BaseTimeEntity {
+public class DeviceModel extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,26 +25,11 @@ public class Model extends BaseTimeEntity {
     private String name;
 
     @OneToOne
-	@JoinColumn(name ="kind_id")
-    private Kind kind;
-
-    @OneToOne
 	@JoinColumn(name ="location_id")
     private Location location;
 
-    @OneToOne
-	@JoinColumn(name ="vendor_id")
-    private Vendor vendor;
-
-    @Column
-    private Long count;
-
     @Builder
-    public Model(String name, Kind kind, Location location, Vendor vendor, Long count) {
+    public DeviceModel(String name) {
         this.name = name;
-        this.kind = kind;
-        this.location = location;
-        this.vendor = vendor;
-        this.count = count;
     }
 }

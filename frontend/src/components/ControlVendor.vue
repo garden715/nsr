@@ -2,18 +2,18 @@
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
       <v-btn class="mx-2" color="" v-bind="attrs" v-on="on">
-        모델
+        제조사
       </v-btn>
     </template>
 
     <v-card>
       <v-card-title class="headline grey lighten-2" primary-title>
-        <span>모델 관리</span>
+        <span>제조사 관리</span>
         <v-spacer></v-spacer>
-        <v-dialog v-model="newModelDialog" max-width="300px">
+        <v-dialog v-model="newVendorDialog" max-width="300px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on"
-              >새로운 모델</v-btn
+              >새로운 제조사</v-btn
             >
           </template>
           <v-card>
@@ -43,7 +43,7 @@
 
       <v-data-table
         :headers="headers"
-        :items="models"
+        :items="vendors"
         :items-per-page="5"
         class="elevation-1"
       >
@@ -72,44 +72,32 @@
 import axios from "axios";
 
 export default {
-  name: "ControlModel",
+  name: "ControlVendor",
   data: () => ({
     dialog: false,
-    newModelDialog: false,
+    newVendorDialog: false,
     headers: [
       { text: "이름", value: "name" },
       { text: "Action", value: "id" },
     ],
-    models: [],
+    vendors: [],
     editedIndex: -1,
     editedItem: {
       id: 0,
       name: "",
-      kind_id: 0,
-      kind_name: "",
-      location_id: 0,
-      location_name: "",
-      vendor_id: 0,
-      vendor_name: "",
       createdDate: "",
       modifiedDate: "",
     },
     defaultItem: {
       id: 0,
       name: "",
-      kind_id: 0,
-      kind_name: "",
-      location_id: 0,
-      location_name: "",
-      vendor_id: 0,
-      vendor_name: "",
       createdDate: "",
       modifiedDate: "",
     },
   }),
   methods: {
     close() {
-      this.newModelDialog = false;
+      this.newVendorDialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
@@ -117,40 +105,40 @@ export default {
     },
     save(item) {
       if (this.editedIndex > -1) {
-        const baseURI = "/api/model";
+        const baseURI = "/api/vendor";
         axios.put(`${baseURI}`, item).then(() => {
-          Object.assign(this.models[this.editedIndex], item);
+          Object.assign(this.vendors[this.editedIndex], item);
           this.close();
         });
       } else {
-        const baseURI = "/api/model";
+        const baseURI = "/api/vendor";
         axios.post(`${baseURI}`, item).then(() => {
-          this.models.push(item);
+          this.vendors.push(item);
           this.close();
         });
       }
     },
     editItem(item) {
-      this.editedIndex = this.models.indexOf(item);
+      this.editedIndex = this.vendors.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.newModelDialog = true;
+      this.newVendorDialog = true;
     },
     deleteItem(item) {
       if (!confirm("삭제하시겠습니까?")) {
         return;
       }
 
-      const index = this.models.indexOf(item);
-      const baseURI = "/api/model";
+      const index = this.vendors.indexOf(item);
+      const baseURI = "/api/vendor";
       axios.delete(`${baseURI}/${item.id}`).then(() => {
-        this.models.splice(index, 1);
+        this.vendors.splice(index, 1);
       });
     },
   },
   mounted: function() {
-    const baseURI = "/api/model";
+    const baseURI = "/api/vendor";
     axios.get(`${baseURI}`).then((result) => {
-      this.models = result.data;
+      this.vendors = result.data;
     });
   },
 };

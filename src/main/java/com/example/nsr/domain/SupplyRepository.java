@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LocationRepository extends JpaRepository<Location, Long> {
-    @Query("SELECT p " + "FROM Location p " + "ORDER BY p.id DESC")
-    Stream<Location> findAllDesc();
+public interface SupplyRepository extends JpaRepository<Supply, Long> {
+    @Query("SELECT m FROM Supply m")
+    Stream<Supply> findAllDesc();
 }

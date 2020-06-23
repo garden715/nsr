@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <!-- <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <span class="title mr-5">Network Supply Registration</span>
       </div>
       <v-spacer></v-spacer>
-    </v-app-bar>
+    </v-app-bar> -->
 
     <v-main>
       <Nsr />
@@ -26,5 +26,8 @@ export default {
   data: () => ({
     //
   }),
+  created () {
+    document.title = "NSR :: Network Supply Registration";
+}
 };
 </script>

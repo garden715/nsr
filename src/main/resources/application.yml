@@ -9,12 +9,17 @@ server:
 spring:
   profiles: local
   datasource:
+  #   data: classpath:data-h2.sql
+  #   url: 'jdbc:h2:mem:testdb'
     data: classpath:data-h2.sql
-    url: 'jdbc:h2:mem:testdb'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/example?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: root
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   h2:
     console:
       enabled: true

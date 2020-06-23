@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import com.example.nsr.domain.Vendor;
+import com.example.nsr.domain.Location;
 
 import lombok.Getter;
 
@@ -15,7 +15,7 @@ public class LocationResponseDto {
     private String createdDate;
     private String modifiedDate;
 
-    public LocationResponseDto(Vendor entity) {
+    public LocationResponseDto(Location entity) {
         id = entity.getId();
         name = entity.getName();
         createdDate = toStringDateTime(entity.getCreatedDate());
